@@ -1,17 +1,25 @@
 const canvas = document.getElementById("Jogo Canvas")
 const ctx = canvas.getContext("2d")
 let gravidade = 0.5
-let velocidade_x = 10
+let velocidade_x = 5
 let pontuacao = 0
 let pontuacaoMaxima = localStorage.getItem("Pontuação Max") || 0
 let gameOver = false
 
 document.addEventListener('keypress', (evento) => {
-    if (evento.code === 'Space' && personagem.pulando === false) {
-        personagem.velocidade_y = 15
-        personagem.pulando = true
+    if (evento.code === 'Space') {
+        if (gameOver) {
+            velocidade_x = 5;
+            pontuacao = 0;
+            obstaculo.x = 750;
+            gameOver = false;
+        } else if (personagem.pulando === false) {
+            personagem.velocidade_y = 15;
+            personagem.pulando = true;
+        }
     }
 });
+
 
 const personagem = {  
     x: 100,
